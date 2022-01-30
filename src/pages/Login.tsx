@@ -20,9 +20,15 @@ const Login = () => {
 
   })
 
-  const loginSubmit = (values : LoginValuesType, {setErrors} : any) => {
-    console.log(values)
-    dispatch(LoginAction(values));
+  const loginSubmit = async (values : LoginValuesType, {setErrors} : any) => {
+    try {
+      const action : any = await dispatch(LoginAction(values));
+      if ('error' in action.payload) {
+        setErrors(action.payload.error);
+      }
+    } catch (error: any) {
+      setErrors(error.error);
+    }
   }
   return (
     <main>
