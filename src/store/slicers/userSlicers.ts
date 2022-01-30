@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { UserSlicerType } from "../../types/types";
 import { LoginAction } from "../actions/userAction";
 
-const initialState = {
+const initialState : UserSlicerType = {
   auth : null,
   user : {},
   token : null,
@@ -19,6 +20,7 @@ const userSlicers = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.loading = false;
+      state.auth = true;
     })
   }
 })
