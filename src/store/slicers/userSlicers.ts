@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UserSlicerType } from "../../types/types";
-import { LoginAction } from "../actions/userAction";
+import { LoginAction, RegisterAction } from "../actions/userAction";
 
 const initialState : UserSlicerType = {
   auth : null,
@@ -13,6 +13,7 @@ const userSlicers = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    //login
     builder.addCase(LoginAction.pending, (state) => {
       state.loading = true;
     });
@@ -21,7 +22,17 @@ const userSlicers = createSlice({
       state.token = action.payload.token;
       state.loading = false;
       state.auth = true;
-    })
+    });
+    //register
+    builder.addCase(RegisterAction.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(RegisterAction.fulfilled, (state, action) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.loading = false;
+      state.auth = true;
+    });
   }
 })
 
