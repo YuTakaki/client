@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UserSlicerType } from "../../types/types";
-import { LoginAction, RegisterAction } from "../actions/userAction";
+import { LoginAction, RegisterAction, VerifyTokenAction } from "../actions/userAction";
 
 const initialState : UserSlicerType = {
   auth : null,
@@ -30,6 +30,17 @@ const userSlicers = createSlice({
     builder.addCase(RegisterAction.fulfilled, (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
+      state.loading = false;
+      state.auth = true;
+    });
+
+    //verify
+    builder.addCase(VerifyTokenAction.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(VerifyTokenAction.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.token = localStorage.getItem("remindMe");
       state.loading = false;
       state.auth = true;
     });
