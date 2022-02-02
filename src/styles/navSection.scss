@@ -1,0 +1,46 @@
+@mixin navSection {
+  .nav-section{
+    width: 15%;
+    max-width: 200px;
+    background-color: $ghostWhite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0 50px;
+    h1{
+      color: $primary;
+      font-family: $secondaryFont;
+      font-weight: bolder;
+    }
+    nav{
+      display: flex;
+      margin-top: 20px;
+      flex-grow: 1;
+      width: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      ul {
+        list-style-type: none;
+        width: 100%;
+        li {
+          padding: 10px 20px;
+          cursor: pointer;
+          font-family: $primaryFont;
+          font-weight: 700;
+        }
+        .active {
+          background-color: white;
+          border-left: 5px solid $primary;
+        }
+      }
+      #nav1{
+        li{
+          &:hover {
+            background-color: white;
+            border-left: 5px solid $primary;
+          }
+        }
+      }
+    }
+  }
+}

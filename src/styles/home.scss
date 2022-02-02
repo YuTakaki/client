@@ -1,27 +1,64 @@
 @import "./variables.scss";
+@import "./navSection.scss";
+
 main {
   display: flex;
   height: 100vh;
-  .main-nav-section{
-    width: 15%;
-    min-width: 200px;
-    background-color: $ghostWhite;
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    ul {
-      list-style-type: none;
-    }
-  }
+  @include navSection;
   .todos-section{
-    flex-grow: 1;
-    header {
+    flex: 1;
+    .todos-dates{
+      padding: 20px;
+      overflow-y: auto;
+      height: 100%;
+    }
+    ul{
       width: 100%;
-      display: flex;
-      justify-content: center;
+      h2{
+        font-family: $secondaryFont;
+      }
+      list-style-type: none;
+      .todos-lists {
+        .todo{
+          color: $ghostWhite;
+          display: flex;
+          height: 80px;
+          width: 100%;
+          background-color: $tertiary;
+          margin: 15px 0;
+          overflow: hidden;
+          box-shadow: 1px 1px 6px 2px rgb(155, 155, 155);
+          border-radius: 5px;
+          .date {
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $primary;
+
+          }
+          .todo-info {
+            flex: 1;
+            padding: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
     }
   }
-  .calendar-section{
-    flex-grow: 1;
+  .calendar-details-section{
+    flex: 2;
+    display: flex;
+    .calendar-section{
+      background-color: green;
+      flex: 1;
+
+    }
+    .details-section{
+      flex: 1;
+      background-color: blue;
+    }
   }
 }

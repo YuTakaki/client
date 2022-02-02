@@ -1,25 +1,112 @@
+import NavSection from "../components/Home/NavSection";
 import "../styles/home.scss";
 
 const Home = () => {
   return (
     <main>
-      <section className='main-nav-section'>
-        <nav className='nav1'>
-          <ul>
-            <li>Today</li>
-            <li>Important</li>
-            <li>Upcomming Events</li>
-            <li>Work</li>
-            <li>Profile</li>
-          </ul>
-          <ul>
-            <li></li>
-          </ul>
-        </nav>
-      </section>
+      <NavSection />
       <section className='todos-section'>
+        <ul className="todos-dates">
+          <li>
+            <h3>April 2</h3>
+            <ul className="todos-lists">
+
+              <li className="todo">
+                <div className="date">
+                  <i></i>
+                  <p>12:00 pm</p>
+                </div>
+                <div className="todo-info">
+                  <h3>Conference Meeting</h3>
+                </div>
+              </li>
+
+              <li className="todo">
+                <div className="date">
+                  <i></i>
+                  <p>12:00 pm</p>
+                </div>
+                <div className="todo-info">
+                  <h3>Conference Meeting</h3>
+                </div>
+              </li>
+
+              <li className="todo">
+                <div className="date">
+                  <i></i>
+                  <p>12:00 pm</p>
+                </div>
+                <div className="todo-info">
+                  <h3>Conference Meeting</h3>
+                </div>
+              </li>
+
+              <li className="todo">
+                <div className="date">
+                  <i></i>
+                  <p>12:00 pm</p>
+                </div>
+                <div className="todo-info">
+                  <h3>Conference Meeting</h3>
+                </div>
+              </li>
+
+            </ul>
+          </li>
+
+          <li>
+            <h3>April 2</h3>
+            <ul className="todos-lists">
+
+              <li className="todo">
+                <div className="date">
+                  <i></i>
+                  <p>12:00 pm</p>
+                </div>
+                <div className="todo-info">
+                  <h3>Conference Meeting</h3>
+                </div>
+              </li>
+
+              <li className="todo">
+                <div className="date">
+                  <i></i>
+                  <p>12:00 pm</p>
+                </div>
+                <div className="todo-info">
+                  <h3>Conference Meeting</h3>
+                </div>
+              </li>
+
+              <li className="todo">
+                <div className="date">
+                  <i></i>
+                  <p>12:00 pm</p>
+                </div>
+                <div className="todo-info">
+                  <h3>Conference Meeting</h3>
+                </div>
+              </li>
+
+              <li className="todo">
+                <div className="date">
+                  <i></i>
+                  <p>12:00 pm</p>
+                </div>
+                <div className="todo-info">
+                  <h3>Conference Meeting</h3>
+                </div>
+              </li>
+
+            </ul>
+          </li>
+        </ul>
       </section>
-      <section className='calendar-section'>
+      <section className='calendar-details-section'>
+        <section className='details-section'>
+        </section>
+        <section className='calendar-section'>
+        </section>
       </section>
     </main>
   );

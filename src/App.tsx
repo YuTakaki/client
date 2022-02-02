@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { VerifyTokenAction } from "./store/actions/userAction";
+import "./styles/global.scss";
 
 function App() {
   const auth = useSelector((state : RootStateOrAny) => state.userReducer.auth);
