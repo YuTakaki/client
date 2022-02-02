@@ -1,0 +1,27 @@
+@import "./variables.scss";
+main {
+  display: flex;
+  height: 100vh;
+  .main-nav-section{
+    width: 15%;
+    min-width: 200px;
+    background-color: $ghostWhite;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    ul {
+      list-style-type: none;
+    }
+  }
+  .todos-section{
+    flex-grow: 1;
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .calendar-section{
+    flex-grow: 1;
+  }
+}
