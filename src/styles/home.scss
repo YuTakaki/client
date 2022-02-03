@@ -1,64 +1,58 @@
 @import "./variables.scss";
 @import "./navSection.scss";
+@import "./todoSection.scss";
 
 main {
   display: flex;
   height: 100vh;
   @include navSection;
-  .todos-section{
-    flex: 1;
-    .todos-dates{
-      padding: 20px;
-      overflow-y: auto;
-      height: 100%;
-    }
-    ul{
-      width: 100%;
-      h2{
-        font-family: $secondaryFont;
-      }
-      list-style-type: none;
-      .todos-lists {
-        .todo{
-          color: $ghostWhite;
-          display: flex;
-          height: 80px;
-          width: 100%;
-          background-color: $tertiary;
-          margin: 15px 0;
-          overflow: hidden;
-          box-shadow: 1px 1px 6px 2px rgb(155, 155, 155);
-          border-radius: 5px;
-          .date {
-            width: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: $primary;
-
-          }
-          .todo-info {
-            flex: 1;
-            padding: 3px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-        }
-      }
-    }
-  }
+  @include todoSection;
   .calendar-details-section{
     flex: 2;
     display: flex;
+    padding-top: 50px;
     .calendar-section{
-      background-color: green;
+      // background-color: green;
       flex: 1;
 
     }
     .details-section{
+      padding: 20px;
       flex: 1;
-      background-color: blue;
+      font-family: $primaryFont;
+      h1{
+        font-size: 2em;
+      }
+      h1, h2 {
+        font-family: $secondaryFont;
+        color: $primary;
+      }
+      .tag{
+        padding: 3px 10px;
+        background-color: $tertiary;
+        color: white;
+        border-radius: 3px;
+        box-shadow: 1px 1px 6px rgb(155, 155, 155);
+        margin-right: 10px;
+      }
+      .details {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+      }
+      .details-inline{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 10px 0;
+        div{
+          margin-right: 20px;
+        }
+      }
+      article p{
+        text-align: justify;
+        line-height: 25px;
+      }
+      // background-color: blue;
     }
   }
 }

@@ -1,0 +1,55 @@
+@mixin todoSection {
+  .todos-section{
+    padding-top: 50px;
+    padding-bottom: 20px;
+    flex: 1;
+    overflow-y: auto;
+    .todos-dates{
+      padding: 20px;
+      min-height: 100%;
+    }
+    ul{
+      width: 100%;
+      h2{
+        font-family: $secondaryFont;
+      }
+      list-style-type: none;
+      .todos-lists {
+        .important {
+          color: $secondary !important;
+          background-color: $quarternary !important;
+          .date{
+            background-color: $secondary !important;
+            color: $quarternary;
+          }
+        }
+        .todo{
+          color: $ghostWhite;
+          display: flex;
+          height: 80px;
+          width: 100%;
+          background-color: $tertiary;
+          margin: 15px 0;
+          overflow: hidden;
+          box-shadow: 1px 1px 6px 1px rgb(155, 155, 155);
+          border-radius: 5px;
+          .date {
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $primary;
+
+          }
+          .todo-info {
+            flex: 1;
+            padding: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}
