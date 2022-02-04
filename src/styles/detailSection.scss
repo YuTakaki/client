@@ -1,0 +1,40 @@
+@mixin detailSection {
+  .details-section{
+    padding: 20px;
+    padding-top: 50px;
+    flex: 1;
+    font-family: $primaryFont;
+    h1{
+      font-size: 2em;
+    }
+    h1, h2 {
+      font-family: $secondaryFont;
+      color: $primary;
+    }
+    .tag{
+      padding: 3px 10px;
+      background-color: $tertiary;
+      color: white;
+      border-radius: 3px;
+      box-shadow: 1px 1px 6px rgb(155, 155, 155);
+      margin-right: 10px;
+    }
+    .details {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+    .details-inline{
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px 0;
+      div{
+        margin-right: 20px;
+      }
+    }
+    article p{
+      text-align: justify;
+      line-height: 25px;
+    }
+  }
+}

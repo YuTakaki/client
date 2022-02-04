@@ -1,90 +1,14 @@
 @import "./variables.scss";
 @import "./navSection.scss";
 @import "./todoSection.scss";
+@import "./detailSection.scss";
+@import "./weatherCalendar.scss";
 
 main {
   display: flex;
   height: 100vh;
   @include navSection;
   @include todoSection;
-  .calendar-weather-details-section{
-    flex: 2;
-    display: flex;
-    .calendar-weather-section{
-      padding-top: 50px;
-      background: rgb(87,127,249);
-      background: linear-gradient(180deg, rgba(87,127,249,1) 0%, rgba(87,127,249,0.33406866164434523) 85%, rgba(255,255,255,1) 100%);
-      flex: 1;
-      .weather{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .weather-detail {
-          min-height: 100px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          p, h2{
-            color: white !important;
-          }
-          p{
-            font-family: $primaryFont;
-          }
-
-          h2{
-            font-family: $secondaryFont;
-          }
-          .temp {
-            font-size: 2em;
-          }
-        }
-        .weather-temp {
-          display: flex;
-          flex-direction: column;
-        }
-        img {
-          width: 100px;
-          height: 100px;
-        }
-      }
-    }
-    .details-section{
-      padding: 20px;
-      padding-top: 50px;
-      flex: 1;
-      font-family: $primaryFont;
-      h1{
-        font-size: 2em;
-      }
-      h1, h2 {
-        font-family: $secondaryFont;
-        color: $primary;
-      }
-      .tag{
-        padding: 3px 10px;
-        background-color: $tertiary;
-        color: white;
-        border-radius: 3px;
-        box-shadow: 1px 1px 6px rgb(155, 155, 155);
-        margin-right: 10px;
-      }
-      .details {
-        display: flex;
-        justify-content: space-between;
-        margin: 10px 0;
-      }
-      .details-inline{
-        display: flex;
-        flex-wrap: wrap;
-        margin: 10px 0;
-        div{
-          margin-right: 20px;
-        }
-      }
-      article p{
-        text-align: justify;
-        line-height: 25px;
-      }
-    }
-  }
+  @include weatherCalendar;
+  @include detailSection;
 }

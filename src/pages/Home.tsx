@@ -1,3 +1,4 @@
+import CalendarSection from "../components/Home/CalendarSection";
 import DetailSection from "../components/Home/DetailSection";
 import NavSection from "../components/Home/NavSection";
 import TodosSection from "../components/Home/TodosSection";
@@ -13,6 +14,7 @@ const Home = () => {
         <DetailSection />
         <section className='calendar-weather-section'>
           <WeatherSeaction />
+          <CalendarSection />
         </section>
       </section>
     </main>
