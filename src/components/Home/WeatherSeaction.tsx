@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 import { useEffect, useMemo, useState } from "react";
 
 
@@ -25,11 +26,16 @@ const WeatherSeaction = () => {
 
   const temperature = useMemo(() => {
     return weather.temp && Math.floor(weather.temp - 273.15) 
-  }, [weather])
+  }, [weather]);
+
+  const date = useMemo(() => {
+    const moment_date = moment(new Date());
+    return moment_date.format('dddd, MMM DD')
+  }, []);
   return (
     <div className='weather'>
       <div className="weather-detail">
-          <h2>Monday, 16 April</h2>
+          <h2>{date}</h2>
         <div className="weather-temp">
           <p className="fade">WEATHER</p>
           <h2 className="temp">{temperature} °C</h2>
