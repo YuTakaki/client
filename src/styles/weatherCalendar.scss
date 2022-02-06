@@ -15,11 +15,21 @@
       .calendarSection{
         flex: 1;
         display: flex;
+        flex-direction: column;
         align-items: center;
         padding: 20px;
         justify-content: center;
 
         @include calendar;
+        #createBtn {
+          padding: 5px 10px;
+          background-color: $secondary;
+          color: white;
+          width: 50%;
+          min-width: 200px;
+          margin: auto;
+          text-align: center;
+        }
       }
       .weather{
         display: flex;

@@ -3,6 +3,7 @@
 @import "./todoSection.scss";
 @import "./detailSection.scss";
 @import "./weatherCalendar.scss";
+@import "./createTasks.scss";
 
 main {
   display: flex;
@@ -11,4 +12,5 @@ main {
   @include todoSection;
   @include weatherCalendar;
   @include detailSection;
+  @include createTask;
 }

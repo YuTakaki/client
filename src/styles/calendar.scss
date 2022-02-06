@@ -1,8 +1,29 @@
 @mixin calendar {
+  .blue-calendar {
+    background-color: $tertiary;
+    button {
+      color: white;
+    }
+    .react-calendar__month-view__weekdays {
+      abbr {
+        color: white;
+      }
+    }
+  }
+  .white-calendar {
+    background-color: white;
+    button {
+      color: $primary;
+    }
+    .react-calendar__month-view__weekdays {
+      abbr {
+        color: $primary;
+      }
+    }
+  }
   .react-calendar {
     font-family: $secondaryFont;
     width: 90%;
-    background-color: white;
     max-width: 500px;
     border: 1px solid rgba($color: $primary, $alpha: 0.3);
     padding: 10px;
@@ -12,7 +33,6 @@
       border: none;
       outline: none;
       background-color: transparent;
-      color: $primary;
       padding: 5px;
       cursor: pointer;
     }
@@ -27,7 +47,6 @@
         justify-content: center;
       }
       abbr {
-        color: $primary;
         text-decoration: none;
         padding: 5px;
       }

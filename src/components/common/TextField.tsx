@@ -1,17 +1,17 @@
 import { FieldHookConfig, useField } from 'formik';
-import React, { useEffect } from 'react';
 
 type Label = {
   label : string,
-  type: string
 }
-const InputField = ({label, type, ...props} : FieldHookConfig<string> & Label ) => {
+const TextField = ({label, ...props} : FieldHookConfig<string> & Label ) => {
   const [field, metas] = useField(props);
 
   return (
     <div>
       <p>{field.name}</p>
-      <input type={type} {...field}/>
+      <textarea {...field}>
+
+      </textarea>
       {metas.touched && metas.error && (
         <p>{metas.error}</p>
       )}
@@ -19,4 +19,4 @@ const InputField = ({label, type, ...props} : FieldHookConfig<string> & Label ) 
   );
 };
 
-export default InputField
+export default TextField;
