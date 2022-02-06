@@ -17,11 +17,6 @@
         flex-wrap: wrap;
         grid-gap: 20px;
       }
-      @include calendar;
-      .react-calendar{
-        max-width: none !important;
-        width: 100% !important;
-      }
     }
   }
 }
