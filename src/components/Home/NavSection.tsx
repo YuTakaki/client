@@ -10,9 +10,13 @@ const NavSection = () => {
           <li>Upcomming Events</li>
           <li>Work</li>
           <li>Profile</li>
+          <div className="center">
+            <button className="button" id='createBtn'>Create</button>
+          </div>
+         
         </ul>
+        
         <ul>
-          <li>toggle</li>
           <li>Log-out</li>
         </ul>
       </nav>

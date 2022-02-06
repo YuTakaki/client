@@ -1,4 +1,20 @@
+@import './variables.scss';
+
 .fade {
   color: rgb(119, 119, 119);
   font-size: .9em;
 }
+
+.button{
+  border-radius: 8px;
+  border: 1px solid $primary;
+  outline: 0;
+  box-shadow: 1px 1px 6px 1px rgb(155, 155, 155);
+}
+
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
