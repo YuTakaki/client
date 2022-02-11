@@ -1,6 +1,4 @@
 import { Form, Formik } from 'formik';
-import React from 'react';
-import Calendar from 'react-calendar';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { addReminderAction } from '../../store/actions/reminderAction';
@@ -24,11 +22,12 @@ const CreateTask = () => {
   const validateSchema = yup.object({
     title : yup.string().required(),
     start_time : yup.string().required("enter start time"),
-    end_time : yup.string(),
+    end_time : yup.string().nullable(),
     note : yup.string(),
   });
   const submitTask = (value : TasksType) => {
     value.date = currentDate;
+    value.end_time = value.end_time === "" ? null : value.end_time
     dispatch(addReminderAction(value));
   }
 

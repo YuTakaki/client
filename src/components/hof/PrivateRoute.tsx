@@ -4,7 +4,6 @@ import { Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({Component } : any) => {
   const auth = useSelector((state : RootStateOrAny) => state.userReducer.auth);
-  console.log(auth)
   return (
     <>
       {auth === true && (

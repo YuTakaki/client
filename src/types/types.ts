@@ -3,16 +3,15 @@ export type LoginValuesType = {
   password : string
 }
 
-// type userType = {
-//   username : string,
-
-// }
 export type TasksType = {
+  id?: number,
   title : string,
   start_time : string,
-  end_time : string,
+  end_time : string | null,
   note : string,
-  date? : string
+  date? : string,
+  favorite?: boolean,
+  user?: number,
 }
 
 export type RegisterValuesType = {
@@ -30,18 +29,9 @@ export type UserSlicerType = {
   loading : boolean
 }
 
-export type CurrentReminderType = {
-  id: number,
-  title: string,
-  start_time: any,
-  end_time: any,
-  date: any,
-  favorite: boolean,
-  note: string,
-  user: number
-}
+
 export type ReminderSliceType = {
   loading : boolean,
   reminders : any,
-  currentReminder : CurrentReminderType | null,
+  currentReminder : TasksType | null,
 }

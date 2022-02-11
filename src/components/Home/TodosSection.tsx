@@ -1,6 +1,39 @@
 import React from 'react';
+import { RootStateOrAny, useSelector } from 'react-redux';
+import { TasksType } from '../../types/types';
 
 const TodosSection = () => {
+  const reminders = useSelector((state : RootStateOrAny) => {
+    const formatReminders = [];
+    const reminders = state.reminderReducer.reminders
+    for (let date in reminders){
+      formatReminders.push([date, reminders[date]])
+    }
+    return formatReminders;
+  });
+
+  const listReminders = reminders.map((data : any) => {
+    const date = data[0];
+    const reminders = data[1]
+    return (
+      <li key={date}>
+        <h3>{date}</h3>
+        <ul className="todos-lists">
+          {reminders.map((reminder : TasksType) => (
+            <li className="todo" key={reminder.id}>
+              <div className="date">
+                <i></i>
+                <p>{reminder.start_time}</p>
+              </div>
+              <div className="todo-info">
+                <h3>{reminder.title}</h3>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </li>
+    )
+  })
   return (
     <section className='todos-section'>
       <form>
@@ -8,50 +41,7 @@ const TodosSection = () => {
         <input type="submit" className='button' />
       </form>
       <ul className="todos-dates">
-        <li>
-          <h3>April 2</h3>
-          <ul className="todos-lists">
-
-
-            <li className="todo">
-              <div className="date">
-                <i></i>
-                <p>12:00 pm</p>
-              </div>
-              <div className="todo-info">
-                <h3>Conference Meeting</h3>
-              </div>
-            </li>
-
-            <li className="todo">
-              <div className="date">
-                <i></i>
-                <p>12:00 pm</p>
-              </div>
-              <div className="todo-info">
-                <h3>Conference Meeting</h3>
-              </div>
-            </li>
-
-          </ul>
-        </li>
-
-        <li>
-          <h3>April 2</h3>
-          <ul className="todos-lists">
-
-            <li className="todo important">
-              <div className="date">
-                <i></i>
-                <p>12:00 pm</p>
-              </div>
-              <div className="todo-info">
-                <h3>Conference Meeting</h3>
-              </div>
-            </li>
-
-          </ul>
-        </li>
+        {listReminders}
       </ul>
     </section>
   );

@@ -10,11 +10,25 @@ export const addReminderAction = createAsyncThunk(
     try {
       const token = localStorage.getItem('remindMe');
       const addReminder = await axios.post(`${REACT_APP_SERVER}/api/reminders/`, data, {headers : { Authorization : `Bearer ${token}`}});
-      console.log(addReminder);
-      
-    } catch (error) {
+      return addReminder.data;
+    } catch (error : any) {
+      console.log(error.response);
       
     }
 
+  }
+);
+
+export const getTodayReminderAction = createAsyncThunk(
+  'reminder/getTodayReminderAction',
+  async() => {
+    try {
+      const token = localStorage.getItem('remindMe');
+      const getTodayReminder = await axios.get(`${REACT_APP_SERVER}/api/reminders/today`, {headers : { Authorization : `Bearer ${token}`}});    
+      return getTodayReminder.data;
+    } catch (error) {
+      console.log(error);
+      
+    }
   }
 )

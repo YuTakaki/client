@@ -1,12 +1,23 @@
+import { useEffect } from "react";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import CalendarSection from "../components/Home/CalendarSection";
 import CreateTask from "../components/Home/CreateTask";
 import DetailSection from "../components/Home/DetailSection";
 import NavSection from "../components/Home/NavSection";
 import TodosSection from "../components/Home/TodosSection";
 import WeatherSeaction from "../components/Home/WeatherSeaction";
+import { getTodayReminderAction } from "../store/actions/reminderAction";
 import "../styles/home.scss";
 
 const Home = () => {
+  const auth = useSelector((state : RootStateOrAny) => state.userReducer.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (auth) {
+      dispatch(getTodayReminderAction());
+    }
+  }, [dispatch, auth])
   return (
     <main>
       <CreateTask />
