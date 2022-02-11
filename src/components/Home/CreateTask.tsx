@@ -1,19 +1,43 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
 import Calendar from 'react-calendar';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
+import { addReminderAction } from '../../store/actions/reminderAction';
+import { TasksType } from '../../types/types';
 import InputField from '../common/InputField';
 import TextField from '../common/TextField';
 
 const CreateTask = () => {
   const initialValue = {
+    title : '',
+    start_time : '',
+    end_time : '',
+    note : '',
+  }
 
+  const dispatch = useDispatch()
+
+
+  const currentDate = useSelector((state : RootStateOrAny) => state.currentDateReducer)
+
+  const validateSchema = yup.object({
+    title : yup.string().required(),
+    start_time : yup.string().required("enter start time"),
+    end_time : yup.string(),
+    note : yup.string(),
+  });
+  const submitTask = (value : TasksType) => {
+    value.date = currentDate;
+    dispatch(addReminderAction(value));
   }
-  const validateSchema = yup.object({});
-  const submitTask = () => {
+
+  const closeCreateTaskForm = () => {
+    document.querySelector('.create-task-container')?.classList.add('hide');
   }
+
   return (
-    <div className='create-task-container'>
+    <div className='create-task-container hide'>
       <Formik
         initialValues={initialValue}
         validationSchema={validateSchema}
@@ -27,7 +51,7 @@ const CreateTask = () => {
           </div>
           <TextField name="note" label='Note' />
           <div className='time-fields'>
-            <button>Cancel</button>
+            <button type='button' onClick={closeCreateTaskForm}>Cancel</button>
             <input type="submit" />
           </div>
         </Form>
