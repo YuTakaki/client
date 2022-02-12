@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { ReminderSliceType, TasksType } from "../../types/types";
-import { addReminderAction, getReminderAction } from "../actions/reminderAction";
+import { addReminderAction, favoriteReminderAction, getReminderAction } from "../actions/reminderAction";
 
 const initialState : ReminderSliceType = {
   loading : false,
@@ -53,6 +53,32 @@ const reminderSlicers = createSlice({
         } else {
           state.reminders[date] = [action.payload];
         }
+      }
+      state.loading = false;
+    });
+
+    //favorite
+    
+    builder.addCase(favoriteReminderAction.pending, (state) => {
+      state.loading = true
+    });
+
+    builder.addCase(favoriteReminderAction.fulfilled, (state, action) => {
+
+      const date = moment(action.payload.date).format('MMMM DD');
+      if (state.currentOption === 'important') {
+        console.log(action.payload.id)
+        state.reminders[date] = state.reminders[date].filter((_reminder : TasksType) => _reminder.id !== action.payload.id);
+        if (state.reminders[date].length === 0) {
+          delete state.reminders[date];
+        }
+      }else{
+        state.reminders[date] = state.reminders[date].map((_reminder : TasksType) => {
+          if(_reminder.id === action.payload.id){
+            _reminder = action.payload
+          }
+          return _reminder;
+        });
       }
       state.loading = false;
     });

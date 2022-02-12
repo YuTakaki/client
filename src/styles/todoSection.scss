@@ -45,22 +45,29 @@
         align-items: center;
         justify-content: flex-start;
         .important {
-          color: $secondary !important;
-          background-color: $quarternary !important;
+          color: $secondary;
+          background-color: $quarternary;
           .date{
-            background-color: $secondary !important;
+            background-color: $secondary;
             color: $quarternary;
+          }
+        }
+
+        .not-important {
+          color: $ghostWhite;
+          background-color: $tertiary;
+          .date{
+            background-color: $primary;
           }
         }
         .currentReminder{
           transform: scale(1.1);
         }
         .todo{
-          color: $ghostWhite;
+          
           display: flex;
           height: 80px;
           width: 95%;
-          background-color: $tertiary;
           margin: 10px 0;
           overflow: hidden;
           box-shadow: 1px 1px 6px 1px rgb(155, 155, 155);
@@ -69,9 +76,8 @@
             width: 80px;
             display: flex;
             align-items: center;
+            flex-direction: column;
             justify-content: center;
-            background-color: $primary;
-
           }
           .todo-info {
             flex: 1;
@@ -79,6 +85,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+          }
+          .star{
+            width: max-content;
+            padding: 10px;
+            i{
+              font-size: 1.3em;
+            }
           }
         }
       }

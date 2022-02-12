@@ -31,4 +31,18 @@ export const getReminderAction = createAsyncThunk(
       
     }
   }
-)
+);
+
+export const favoriteReminderAction = createAsyncThunk(
+  'reminder/favoriteReminderAction',
+  async(id : number) => {
+    try {
+      const token = localStorage.getItem('remindMe');
+      const getTodayReminder = await axios.put(`${REACT_APP_SERVER}/api/reminders/${id}`,{}, {headers : { Authorization : `Bearer ${token}`}});    
+      return getTodayReminder.data;
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+);

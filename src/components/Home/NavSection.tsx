@@ -4,7 +4,7 @@ import { changeTaskOptionAction } from "../../store/slicers/reminderSlicers";
 const NavSection = () => {
   const options = ['today', 'important', 'upcomming events'];
   const dispatch = useDispatch();
-  const currentOption = useSelector((state : RootStateOrAny) => state.reminderReducer);
+  const currentOption = useSelector((state : RootStateOrAny) => state.reminderReducer.currentOption);
   return (
     <section className='nav-section'>
       <h1>remindMe</h1>
@@ -13,7 +13,7 @@ const NavSection = () => {
           {options.map(_option => (
             <li
               key={_option}
-              className={currentOption === _option ? 'active' : ''}
+              className={currentOption.replace('-', ' ') === _option ? 'active' : ''}
               onClick={() => dispatch(changeTaskOptionAction(_option))}
             >{_option}</li>
           ))}
