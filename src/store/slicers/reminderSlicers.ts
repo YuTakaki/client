@@ -11,7 +11,11 @@ const initialState : ReminderSliceType = {
 const reminderSlicers = createSlice({
   name : "reminder",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentReminderAction : (state, action) => {
+      state.currentReminder = action.payload
+    } 
+  },
   extraReducers: (builder) => {
     //get today reminder
     builder.addCase(getTodayReminderAction.pending, (state) => {
@@ -49,5 +53,6 @@ const reminderSlicers = createSlice({
   }
 })
 
+export const { setCurrentReminderAction } = reminderSlicers.actions;
 const reminderReducer = reminderSlicers.reducer
 export default reminderReducer

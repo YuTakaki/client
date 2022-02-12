@@ -31,7 +31,7 @@
     border-radius: 20px;
     .react-calendar__tile--active{
       background-color: $tertiary;
-      color: white;
+      color: white !important;
     }
     button {
       border: none;

@@ -1,8 +1,14 @@
 import React from 'react';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { setCurrentReminderAction } from '../../store/slicers/reminderSlicers';
 import { TasksType } from '../../types/types';
 
 const TodosSection = () => {
+
+  const dispatch = useDispatch();
+
+  const currentReminder : TasksType = useSelector((state : RootStateOrAny) => state.reminderReducer.currentReminder);
+
   const reminders = useSelector((state : RootStateOrAny) => {
     const formatReminders = [];
     const reminders = state.reminderReducer.reminders
@@ -20,7 +26,11 @@ const TodosSection = () => {
         <h3>{date}</h3>
         <ul className="todos-lists">
           {reminders.map((reminder : TasksType) => (
-            <li className="todo" key={reminder.id}>
+            <li 
+              className={`todo ${currentReminder && currentReminder.id === reminder.id && 'currentReminder'}`} 
+              key={reminder.id}
+              onClick={() => dispatch(setCurrentReminderAction(reminder))}
+            >
               <div className="date">
                 <i></i>
                 <p>{reminder.start_time}</p>

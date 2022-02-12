@@ -1,12 +1,30 @@
 @mixin detailSection {
-  .details-section{
+  .openDetailSection{
     padding: 20px;
-    padding-top: 50px;
     flex: 1;
-    // width: 0;
-    // padding: 0;
-    // overflow: hidden;
+    padding-top: 50px;
+  }
+
+  .closeDetailSection{
+    padding: 20px;
+    flex: 1;
+    padding-top: 50px;
+    padding: 0;
+    flex: 0;
+    width: 0;
+    overflow: hidden;
+  }
+  .details-section{
+    transition: .5s;
     font-family: $primaryFont;
+    position: relative;
+    .fa-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: rgb(211, 79, 79);
+      font-size: 2em;
+    }
     h1{
       font-size: 2em;
     }
