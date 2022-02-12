@@ -19,12 +19,12 @@ export const addReminderAction = createAsyncThunk(
   }
 );
 
-export const getTodayReminderAction = createAsyncThunk(
-  'reminder/getTodayReminderAction',
-  async() => {
+export const getReminderAction = createAsyncThunk(
+  'reminder/getReminderAction',
+  async(option : string) => {
     try {
       const token = localStorage.getItem('remindMe');
-      const getTodayReminder = await axios.get(`${REACT_APP_SERVER}/api/reminders/today`, {headers : { Authorization : `Bearer ${token}`}});    
+      const getTodayReminder = await axios.get(`${REACT_APP_SERVER}/api/reminders/${option}`, {headers : { Authorization : `Bearer ${token}`}});    
       return getTodayReminder.data;
     } catch (error) {
       console.log(error);

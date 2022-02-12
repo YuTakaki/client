@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { ReminderSliceType, TasksType } from "../../types/types";
-import { addReminderAction, getTodayReminderAction } from "../actions/reminderAction";
+import { addReminderAction, getReminderAction } from "../actions/reminderAction";
 
 const initialState : ReminderSliceType = {
   loading : false,
@@ -17,13 +17,13 @@ const reminderSlicers = createSlice({
     } 
   },
   extraReducers: (builder) => {
-    //get today reminder
-    builder.addCase(getTodayReminderAction.pending, (state) => {
+    //get reminder
+    builder.addCase(getReminderAction.pending, (state) => {
       state.loading = true
     });
 
-    builder.addCase(getTodayReminderAction.fulfilled, (state, action) => {
-      // const reminders : any = {}
+    builder.addCase(getReminderAction.fulfilled, (state, action) => {
+      state.reminders = {}
       action.payload.forEach((task : TasksType) => {
         const date = moment(task.date).format('MMMM DD');
         if(date in state.reminders){

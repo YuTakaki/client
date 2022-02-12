@@ -6,18 +6,20 @@ import DetailSection from "../components/Home/DetailSection";
 import NavSection from "../components/Home/NavSection";
 import TodosSection from "../components/Home/TodosSection";
 import WeatherSeaction from "../components/Home/WeatherSeaction";
-import { getTodayReminderAction } from "../store/actions/reminderAction";
+import { getReminderAction } from "../store/actions/reminderAction";
 import "../styles/home.scss";
 
 const Home = () => {
   const auth = useSelector((state : RootStateOrAny) => state.userReducer.auth);
   const dispatch = useDispatch();
+  const currentOption = useSelector((state : RootStateOrAny) => state.taskOptionReducer)
 
   useEffect(() => {
     if (auth) {
-      dispatch(getTodayReminderAction());
+      dispatch(getReminderAction(currentOption.replace(' ', '-')));
     }
-  }, [dispatch, auth])
+  }, [dispatch, auth, currentOption]);
+
   return (
     <main>
       <CreateTask />
