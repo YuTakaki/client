@@ -7,6 +7,7 @@ const initialState : ReminderSliceType = {
   loading : false,
   reminders : {},
   currentReminder : null,
+  currentOption : 'today'
 }
 const reminderSlicers = createSlice({
   name : "reminder",
@@ -14,7 +15,10 @@ const reminderSlicers = createSlice({
   reducers: {
     setCurrentReminderAction : (state, action) => {
       state.currentReminder = action.payload
-    } 
+    },
+    changeTaskOptionAction : (state, action) => {
+      state.currentOption = action.payload.replace(' ', '-')
+    }
   },
   extraReducers: (builder) => {
     //get reminder
@@ -42,17 +46,22 @@ const reminderSlicers = createSlice({
     });
 
     builder.addCase(addReminderAction.fulfilled, (state, action) => {
-      const date = moment(action.payload.date).format('MMMM DD');
-      if(date in state.reminders){
-        state.reminders[date].push(action.payload);
-      }else{
-        state.reminders[date] = [action.payload];
+      if (state.currentOption === 'upcomming-events') {
+        const date = moment(action.payload.date).format('MMMM DD');
+        if (date in state.reminders) {
+          state.reminders[date].push(action.payload);
+        } else {
+          state.reminders[date] = [action.payload];
+        }
       }
       state.loading = false;
     });
   }
 })
 
-export const { setCurrentReminderAction } = reminderSlicers.actions;
+export const { 
+  setCurrentReminderAction,
+  changeTaskOptionAction
+ } = reminderSlicers.actions;
 const reminderReducer = reminderSlicers.reducer
 export default reminderReducer

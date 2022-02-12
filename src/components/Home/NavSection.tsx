@@ -1,17 +1,18 @@
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { changeTaskOptionAction } from "../../store/slicers/taskOptionSlicer";
+import { changeTaskOptionAction } from "../../store/slicers/reminderSlicers";
 
 const NavSection = () => {
   const options = ['today', 'important', 'upcomming events'];
   const dispatch = useDispatch();
-  const currentOption = useSelector((state : RootStateOrAny) => state.taskOptionReducer)
+  const currentOption = useSelector((state : RootStateOrAny) => state.reminderReducer);
   return (
     <section className='nav-section'>
       <h1>remindMe</h1>
       <nav>
         <ul id="nav1">
           {options.map(_option => (
-            <li 
+            <li
+              key={_option}
               className={currentOption === _option ? 'active' : ''}
               onClick={() => dispatch(changeTaskOptionAction(_option))}
             >{_option}</li>

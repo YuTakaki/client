@@ -34,4 +34,5 @@ export type ReminderSliceType = {
   loading : boolean,
   reminders : any,
   currentReminder : TasksType | null,
+  currentOption : 'today' | 'upcomming-events' | 'important'
 }

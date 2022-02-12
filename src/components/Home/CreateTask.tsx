@@ -14,9 +14,7 @@ const CreateTask = () => {
     note : '',
   }
 
-  const dispatch = useDispatch()
-
-
+  const dispatch = useDispatch();
   const currentDate = useSelector((state : RootStateOrAny) => state.currentDateReducer)
 
   const validateSchema = yup.object({
@@ -27,7 +25,7 @@ const CreateTask = () => {
   });
   const submitTask = async(value : TasksType) => {
     value.date = currentDate;
-    value.end_time = value.end_time === "" ? null : value.end_time
+    value.end_time = value.end_time === "" ? null : value.end_time;
     await dispatch(addReminderAction(value));
     closeCreateTaskForm();
   }

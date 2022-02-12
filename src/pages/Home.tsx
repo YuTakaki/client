@@ -12,11 +12,11 @@ import "../styles/home.scss";
 const Home = () => {
   const auth = useSelector((state : RootStateOrAny) => state.userReducer.auth);
   const dispatch = useDispatch();
-  const currentOption = useSelector((state : RootStateOrAny) => state.taskOptionReducer)
+  const currentOption = useSelector((state : RootStateOrAny) => state.reminderReducer.currentOption)
 
   useEffect(() => {
     if (auth) {
-      dispatch(getReminderAction(currentOption.replace(' ', '-')));
+      dispatch(getReminderAction(currentOption));
     }
   }, [dispatch, auth, currentOption]);
 
