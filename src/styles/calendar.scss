@@ -33,6 +33,21 @@
       background-color: $tertiary;
       color: white !important;
     }
+
+    .highlight{
+      position: relative;
+      &::after {
+        content: "";
+        padding: 2px;
+        border-radius: 10px;
+        background-color: rgb(216, 79, 79);
+        position: absolute;
+        bottom: 1px;
+        left: 50%;
+        transform: translateX(-50%);
+      
+      }
+    }
     button {
       border: none;
       outline: none;
