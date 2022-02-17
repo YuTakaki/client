@@ -57,12 +57,20 @@ const reminderSlicers = createSlice({
     });
 
     builder.addCase(addReminderAction.fulfilled, (state, action) => {
-      if (state.currentOption === 'upcomming-events') {
-        const date = moment(action.payload.date).format('MMMM DD');
+      const assignState = (state : any, action : any) => {
         if (date in state.reminders) {
           state.reminders[date].push(action.payload);
         } else {
           state.reminders[date] = [action.payload];
+        }
+      }
+      const date = moment(action.payload.date).format('MMMM DD');
+      if (state.currentOption === 'upcomming-events') {
+        assignState(state, action);
+      } else if (state.currentOption === 'today') {
+        const currentDate = moment(new Date()).format('MMMM DD');
+        if (date === currentDate) {
+          assignState(state, action);
         }
       }
       state.loading = false;
