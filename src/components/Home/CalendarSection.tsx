@@ -4,6 +4,7 @@ import Calendar from 'react-calendar';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { getTodosMonthAction } from '../../store/actions/calendarTaskAction';
 import { setCurrentDateAction } from '../../store/slicers/currentDateSlicers';
+import { changeTaskOptionAction } from '../../store/slicers/reminderSlicers';
 const CalendarSection = () => {
 
   const dispatch = useDispatch();
@@ -31,8 +32,9 @@ const CalendarSection = () => {
     <div className='calendarSection'>
       <Calendar 
         className="white-calendar"
-        onChange={(date : Date) => {
-          dispatch(setCurrentDateAction(moment(date).format('YYYY-MM-DD')));
+        onChange={async(date : Date) => {
+          await dispatch(setCurrentDateAction(moment(date).format('YYYY-MM-DD')));
+          await dispatch(changeTaskOptionAction(''));
         }}
         defaultValue={new Date()}
         onActiveStartDateChange={(obj) => {

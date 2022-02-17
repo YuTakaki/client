@@ -18,6 +18,17 @@ const reminderSlicers = createSlice({
     },
     changeTaskOptionAction : (state, action) => {
       state.currentOption = action.payload.replace(' ', '-')
+    },
+    setTodosAction: (state, action) => {
+      state.reminders = {}
+      action.payload.forEach((task : TasksType) => {
+        const date = moment(task.date).format('MMMM DD');
+        if(date in state.reminders){
+          state.reminders[date].push(task);
+        }else{
+          state.reminders[date] = [task];
+        }
+      });
     }
   },
   extraReducers: (builder) => {
@@ -67,7 +78,6 @@ const reminderSlicers = createSlice({
 
       const date = moment(action.payload.date).format('MMMM DD');
       if (state.currentOption === 'important') {
-        console.log(action.payload.id)
         state.reminders[date] = state.reminders[date].filter((_reminder : TasksType) => _reminder.id !== action.payload.id);
         if (state.reminders[date].length === 0) {
           delete state.reminders[date];
@@ -87,7 +97,8 @@ const reminderSlicers = createSlice({
 
 export const { 
   setCurrentReminderAction,
-  changeTaskOptionAction
+  changeTaskOptionAction,
+  setTodosAction,
  } = reminderSlicers.actions;
 const reminderReducer = reminderSlicers.reducer
 export default reminderReducer
