@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup'
 import InputField from '../components/common/InputField';
 import { LoginAction } from '../store/actions/userAction';
@@ -11,6 +12,8 @@ const Login = () => {
     usernameOrEmail: "",
     password: "",
   }
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch()
 
@@ -25,6 +28,8 @@ const Login = () => {
       const action : any = await dispatch(LoginAction(values));
       if ('error' in action.payload) {
         setErrors(action.payload.error);
+      } else{
+        navigate('/')
       }
     } catch (error: any) {
       setErrors(error.error);

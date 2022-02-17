@@ -1,5 +1,6 @@
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { changeTaskOptionAction } from "../../store/slicers/reminderSlicers";
+import { logoutAction } from "../../store/slicers/userSlicers";
 
 const NavSection = () => {
   const options = ['today', 'important', 'upcomming events'];
@@ -21,7 +22,7 @@ const NavSection = () => {
         
         <ul>
           <li>Profile</li>
-          <li>Log-out</li>
+          <li onClick={() => dispatch(logoutAction())}>Log-out</li>
         </ul>
       </nav>
     </section>

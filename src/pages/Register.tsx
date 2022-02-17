@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Form, Formik, FormikProps } from 'formik';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import InputField from '../components/common/InputField';
 import { RegisterAction } from '../store/actions/userAction';
@@ -16,6 +17,8 @@ const Register = () => {
     first_name : "",
     last_name : "",
   }
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -57,7 +60,9 @@ const Register = () => {
     try {
       const data = {...values};
       delete data['retry_password'];
-      dispatch(RegisterAction(data));
+      await dispatch(RegisterAction(data));
+      navigate('/')
+      
     } catch (error) {
       console.log(error);
       

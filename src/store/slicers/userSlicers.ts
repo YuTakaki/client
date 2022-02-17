@@ -11,7 +11,12 @@ const initialState : UserSlicerType = {
 const userSlicers = createSlice({
   name : 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    logoutAction : () => {
+      localStorage.removeItem('remindMe');
+      return initialState;
+    } 
+  },
   extraReducers: (builder) => {
     //login
     builder.addCase(LoginAction.pending, (state) => {
@@ -50,3 +55,4 @@ const userSlicers = createSlice({
 const userReducer = userSlicers.reducer;
 
 export default userReducer;
+export const { logoutAction } = userSlicers.actions
