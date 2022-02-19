@@ -23,11 +23,12 @@ const CreateTask = () => {
     end_time : yup.string().nullable(),
     note : yup.string(),
   });
-  const submitTask = async(value : TasksType) => {
+  const submitTask = async(value : TasksType, { resetForm }: any) => {
     value.date = currentDate;
     value.end_time = value.end_time === "" ? null : value.end_time;
     await dispatch(addReminderAction(value));
     closeCreateTaskForm();
+    resetForm()
   }
 
   const closeCreateTaskForm = () => {
