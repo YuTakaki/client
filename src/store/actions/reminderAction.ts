@@ -46,3 +46,18 @@ export const favoriteReminderAction = createAsyncThunk(
     }
   }
 );
+
+export const searchAction = createAsyncThunk(
+  'reminder/searchAction',
+  async(keyword : string) => {
+    try {
+      const token = localStorage.getItem('remindMe');
+      const searchedReminder = await axios.get(`${REACT_APP_SERVER}/api/reminders/search?keyword=${keyword}`, {headers : { Authorization : `Bearer ${token}`}});
+      console.log(searchedReminder.data)
+      return searchedReminder.data;
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+);

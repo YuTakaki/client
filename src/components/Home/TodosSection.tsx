@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { favoriteReminderAction } from '../../store/actions/reminderAction';
+import { favoriteReminderAction, searchAction } from '../../store/actions/reminderAction';
 import { setCurrentReminderAction } from '../../store/slicers/reminderSlicers';
 import { TasksType } from '../../types/types';
 
 const TodosSection = () => {
 
   const dispatch = useDispatch();
+
+  const [keyword, setKeyword] = useState('');
 
   const currentReminder : TasksType = useSelector((state : RootStateOrAny) => state.reminderReducer.currentReminder);
 
@@ -54,11 +56,16 @@ const TodosSection = () => {
         </ul>
       </li>
     )
-  })
+  });
+
+  const searchKeyword = (e : FormEvent) => {
+    e.preventDefault();
+    dispatch(searchAction(keyword));
+  }
   return (
     <section className='todos-section'>
-      <form>
-        <input type='search'/>
+      <form onSubmit={searchKeyword}>
+        <input type='search' value={keyword} onChange={(e) => setKeyword(e.target.value)}/>
         <input type="submit" className='button' />
       </form>
       <ul className="todos-dates">

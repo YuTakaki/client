@@ -1,13 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { ReminderSliceType, TasksType } from "../../types/types";
-import { addReminderAction, favoriteReminderAction, getReminderAction } from "../actions/reminderAction";
+import { addReminderAction, favoriteReminderAction, getReminderAction, searchAction } from "../actions/reminderAction";
 
 const initialState : ReminderSliceType = {
   loading : false,
   reminders : {},
   currentReminder : null,
   currentOption : 'today'
+}
+
+const assignState = (state : any, action : any, date : string) => {
+  if (date in state.reminders) {
+    state.reminders[date].push(action.payload);
+  } else {
+    state.reminders[date] = [action.payload];
+  }
 }
 const reminderSlicers = createSlice({
   name : "reminder",
@@ -32,6 +40,26 @@ const reminderSlicers = createSlice({
     }
   },
   extraReducers: (builder) => {
+
+    //search
+    builder.addCase(searchAction.pending, (state) => {
+      state.loading = true
+    });
+
+    builder.addCase(searchAction.fulfilled, (state, action) => {
+      state.currentOption = 'search'
+      state.reminders = {}
+      action.payload.forEach((task : TasksType) => {
+        const date = moment(task.date).format('MMMM DD');
+        if(date in state.reminders){
+          state.reminders[date].push(task);
+        }else{
+          state.reminders[date] = [task];
+        }
+      });
+      state.loading = false;
+    });
+
     //get reminder
     builder.addCase(getReminderAction.pending, (state) => {
       state.loading = true
@@ -57,20 +85,13 @@ const reminderSlicers = createSlice({
     });
 
     builder.addCase(addReminderAction.fulfilled, (state, action) => {
-      const assignState = (state : any, action : any) => {
-        if (date in state.reminders) {
-          state.reminders[date].push(action.payload);
-        } else {
-          state.reminders[date] = [action.payload];
-        }
-      }
       const date = moment(action.payload.date).format('MMMM DD');
       if (state.currentOption === 'upcomming-events') {
-        assignState(state, action);
+        assignState(state, action, date);
       } else if (state.currentOption === 'today') {
         const currentDate = moment(new Date()).format('MMMM DD');
         if (date === currentDate) {
-          assignState(state, action);
+          assignState(state, action, date);
         }
       }
       state.loading = false;

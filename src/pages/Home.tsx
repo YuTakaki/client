@@ -19,7 +19,7 @@ const Home = () => {
 
   useEffect(() => {
     if (auth) {
-      if (currentOption !== "") {
+      if (currentOption !== "" && currentOption !== "search") {
         dispatch(getReminderAction(currentOption));
       }
     }
