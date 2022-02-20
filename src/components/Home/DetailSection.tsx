@@ -1,6 +1,8 @@
 import moment from "moment";
 import { useRef } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { deleteAction } from "../../store/actions/reminderAction";
+import { deleteTaskInCalendar } from "../../store/slicers/calendarTaskSlicers";
 import { setCurrentReminderAction } from "../../store/slicers/reminderSlicers";
 import { TasksType } from "../../types/types";
 
@@ -10,6 +12,12 @@ const DetailSection = () => {
 
   const currentReminder : TasksType = useSelector((state : RootStateOrAny) => state.reminderReducer.currentReminder);
   const dispatch = useDispatch();
+
+  const deleteTodo = async() => {
+    await dispatch(deleteAction(currentReminder));
+    dispatch(deleteTaskInCalendar(currentReminder.id));
+    dispatch(setCurrentReminderAction(null));
+  }
 
 
   return (
@@ -22,12 +30,11 @@ const DetailSection = () => {
           <i className='fa fa-close' onClick={() => dispatch(setCurrentReminderAction(null))}></i>
           <div className="details">
             <p className="fade">{currentReminder && moment(currentReminder.date).format('dddd, MMMM DD')}</p>
-            <i></i>
           </div>
           <div className="details">
             <h1>{currentReminder?.title}</h1>
-            <i></i>
           </div>
+          <button className="button deleteBtn" onClick={deleteTodo}>Delete</button>
           <div className="details-inline">
             <div>
               <p className="fade">Time start</p>

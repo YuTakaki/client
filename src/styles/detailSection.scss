@@ -18,6 +18,13 @@
     transition: .5s;
     font-family: $primaryFont;
     position: relative;
+    .deleteBtn {
+      width: 100px;
+      background-color: $tertiary;
+      padding: 5px 10px;
+      color: white;
+      border: 1px solid $primary;
+    }
     .fa-close {
       position: absolute;
       top: 20px;

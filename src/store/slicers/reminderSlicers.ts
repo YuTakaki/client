@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { ReminderSliceType, TasksType } from "../../types/types";
-import { addReminderAction, favoriteReminderAction, getReminderAction, searchAction } from "../actions/reminderAction";
+import { addReminderAction, deleteAction, favoriteReminderAction, getReminderAction, searchAction } from "../actions/reminderAction";
 
 const initialState : ReminderSliceType = {
   loading : false,
@@ -40,6 +40,22 @@ const reminderSlicers = createSlice({
     }
   },
   extraReducers: (builder) => {
+
+    //delete
+    builder.addCase(deleteAction.pending, (state, action) => {
+      state.loading = true
+    });
+
+    builder.addCase(deleteAction.fulfilled, (state, action) => {
+      state.currentOption = 'search'
+      const task = action.payload!
+      const date = moment(task.date).format('MMMM DD');
+      state.reminders[date] = state.reminders[date].filter((_task : TasksType) => _task.id !== task.id);
+      if(state.reminders[date].length === 0) {
+        delete state.reminders[date];
+      }
+      state.loading = false;
+    });
 
     //search
     builder.addCase(searchAction.pending, (state) => {

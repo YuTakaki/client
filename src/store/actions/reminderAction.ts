@@ -53,8 +53,21 @@ export const searchAction = createAsyncThunk(
     try {
       const token = localStorage.getItem('remindMe');
       const searchedReminder = await axios.get(`${REACT_APP_SERVER}/api/reminders/search?keyword=${keyword}`, {headers : { Authorization : `Bearer ${token}`}});
-      console.log(searchedReminder.data)
       return searchedReminder.data;
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+);
+
+export const deleteAction = createAsyncThunk(
+  'reminder/deleteAction',
+  async(task : TasksType) => {
+    try {
+      const token = localStorage.getItem('remindMe');
+      await axios.delete(`${REACT_APP_SERVER}/api/reminders/${task.id}`, {headers : { Authorization : `Bearer ${token}`}});
+      return task;
     } catch (error) {
       console.log(error);
       
